@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+</head>
+
+<body>
+  <!-- <form action="/login"> -->
+  <form>
+    <!-- <fieldset style="font-size: xx-large;"> -->
+    <fieldset>
+      <legend>Basic User Info</legend>
+      <div>
+        <label>Enter UserName:
+          <input type="text" name="userName" minlength="5" maxlength="10" placeholder="Enter UserName">
+        </label>
+      </div>
+      <br>
+      <div>
+        <label for="email">Email ID</label>
+        <input type="email" id="email" name="email" autocomplete="off">
+      </div>
+
+      <br>
+      <div>
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="pass" minlength="5" maxlength="10"
+          pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" required>
+        <!-- This regex will enforce these rules:
+  
+        At least one upper case English letter, (?=.*?[A-Z])
+        At least one lower case English letter, (?=.*?[a-z])
+        At least one digit, (?=.*?[0-9])
+        At least one special character, (?=.*?[#?!@$%^&*-])
+        Minimum eight in length .{8,} (with the anchors) -->
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Other Details</legend>
+      <div>
+        <label for="gender">Gender</label>
+        <input id="maleRadio" type="radio" name="gender" value="M">Male
+        <input id="femaleRadio" type="radio" name="gender" value="F">Female
+        <input id="othersRadio" type="radio" name="gender" value="O">Others
+      </div>
+
+      <div>
+        <label for="hobbies">Hobbies</label>
+        <input type="checkbox" name="hobbies" value="playing" checked>Playing Cricket
+        <input type="checkbox" name="hobbies" value="reading" disabled checked>Reading
+        <input type="checkbox" name="hobbies" value="swimming" checked>Swimming
+        <input type="checkbox" name="hobbies" value="sleeping">Sleeping
+      </div>
+
+      <div>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+      </div>
+      <div>
+        <input type="file" />
+      </div>
+    </fieldset>
+
+
+    <div>
+      <textarea id="comments" rows="10" cols="20"></textarea>
+    </div>
+
+    <div>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+      <!-- <input type="reset" /> -->
+      <!-- <input type="submit" /> -->
+    </div>
+  </form>
+
+</body>
+
+</html>
