@@ -1,0 +1,42 @@
+.sameColor {
+  background-color: rgb(255, 0, 0);
+
+}
+
+.sameFont {
+  font-size: 30px;
+}
+
+.paraFont {
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+.remSample {
+  font-size: 2rem;
+}
+
+.rootStyle {
+  font-size: 30px;
+}
+
+.percentageChild {
+  font-size: 20%;
+}
+
+.percentageParent {
+  font-size: 100px;
+}
+
+.vhvwSample {
+  width: 10vw;
+  height: 10vh;
+}
+
+h4 {
+  text-transform: capitalize ;
+}
+
+.textStyles {
+  text-indent: 10px;
+}
