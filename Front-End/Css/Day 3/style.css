@@ -52,6 +52,18 @@ section,
 }
 
 /*Attribute Selector */
-div[class][image] {
+div[class="attribute"] {
   color: red;
+}
+
+input[autocomplete][disabled] {
+  color: grey;
+}
+
+/* Child Selector */
+section p {
+  color: blue;
+}
+#idSample .classSample {
+  color: green;
 }

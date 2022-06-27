@@ -1,0 +1,44 @@
+.container {
+  background-color: aqua;
+  padding: 5px;
+}
+
+.box {
+  background-color: red;
+  height: 100px;
+  width: 100px;
+  margin: 4px;
+}
+
+.box-3 {
+  position: relative;
+  left: 20px;
+  bottom: 10px;
+  background-color: black;
+  color: white;
+  opacity: 0.5;
+}
+
+.box-1 {
+  position: absolute;
+  opacity: 0.5;
+  bottom: 200px;
+  left: 200px;
+  background-color: yellow;
+}
+
+.box-5 {
+  position: sticky;
+  top: 10px;
+  background-color: green;
+  opacity: 0.5;
+}
+
+/* 
+Position Property
+
+i)static - default
+ii)relative
+iii) absolute
+iv) fixed
+v) sticky */
