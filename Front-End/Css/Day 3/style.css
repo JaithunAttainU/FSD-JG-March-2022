@@ -1,0 +1,57 @@
+#textIndent {
+  text-indent: 30px;
+}
+
+p {
+  text-indent: 30px;
+  letter-spacing: 3px;
+  line-height: 25px;
+}
+
+pre {
+  text-indent: 50px;
+}
+
+footer {
+  text-indent: 50px;
+}
+
+ul {
+  text-align: center;
+}
+
+h1 {
+  /* border-width: 10px 5px; */
+
+  /* border-top-width: 10px;
+  border-right-width: 5px;
+  border-bottom-width: 8px;
+  border-left-width: 7px; */
+  
+  border: 5px solid red;
+
+  /* border-style: double;
+
+  border-left-style: dashed;
+  border-radius: 15px;
+  border-color: red; */
+background-color: teal;
+  padding: 5px 10px 15px 20px;
+}
+
+section,
+div {
+background-color: teal;
+}
+
+/* Multi Element Selector */
+section,
+#textIndent,
+.sampleClass {
+  font-size: 5px;
+}
+
+/*Attribute Selector */
+div[class][image] {
+  color: red;
+}
