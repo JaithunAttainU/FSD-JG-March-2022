@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pseudo Classes & Pseudo Elements, Shadows, Gradients, Transitions, Transformations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <style>
+    #login:hover {
+      background-color: red;
+      color: white;
+    }
+
+    button:focus {
+      background-color: blue;
+    }
+
+    a:visited {
+      color: red;
+    }
+
+    #pseudo-element::first-line {
+      font-weight: bold;
+    }
+
+    #pseudo-element::first-letter {
+      color: red;
+    }
+
+    #cart-btn::before {
+      content: '\f2b9';
+      font-family: FontAwesome;
+    }
+
+    #cart-btn::after {
+      content: '\f2b9';
+      font-family: FontAwesome;
+    }
+
+    button::after {
+      content: 'Hello';
+    }
+
+    .box-shadow {
+      height: 100px;
+      width: 100px;
+      background-color: aqua;
+      margin: auto;
+      /* box-shadow: 10px 10px 2px 2px lightblue inset, 12px 12px 2px 2px red inset, 14px 14px 2px 2px green inset;
+      box-shadow: 10px 10px 2px 2px lightblue, 12px 12px 2px 2px red, 14px 14px 2px 2px green;
+      text-shadow: 2px 2px green; */
+
+      transition: background-color 4s ease 2s, width 2s linear 3s;
+      transition-property: all;
+      transition-duration: 3s;
+      /* transition-delay: 2s; */
+      /* transition-timing-function: cubic-bezier(0, 1.87, .95, -0.12); */
+    }
+
+    .box-shadow:hover {
+      background-color: red;
+      width: 200px;
+      height: 200px;
+
+      /* transform: rotate(45deg) scale(3); */
+      transform: rotate(45deg);
+      /* transform: skewY(45deg); */
+      /* box-shadow: 10px 10px 2px 2px lightblue, 12px 12px 2px 2px red, 14px 14px 2px 2px green; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <button id="login">Login</button>
+
+  <a href="https://www.google.com/">Google</a>
+  <a href="https://www.amazon.com/">Amazon</a>
+
+
+  <p id="pseudo-element"> ipsum dolor, sit amet consectetur adipisicing elit. Sint optio nobis,
+    facilis doloribus minima
+    vero?
+    Ipsam ea
+    illum unde fugit eum delectus cupiditate blanditiis sint placeat magni? Accusantium, vitae nulla.</p>
+
+  <button id="cart-btn">Cart</button> -->
+
+  <div class="box-shadow">Shadow</div>
+</body>
+
+</html>

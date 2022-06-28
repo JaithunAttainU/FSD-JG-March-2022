@@ -56,7 +56,7 @@ div[class="attribute"] {
   color: red;
 }
 
-input[autocomplete][disabled] {
+input[autocomplete][disabled][] {
   color: grey;
 }
 
