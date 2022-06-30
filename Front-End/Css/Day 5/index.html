@@ -31,7 +31,7 @@
     }
 
     #cart-btn::before {
-      content: '\f2b9';
+      content: url();
       font-family: FontAwesome;
     }
 
@@ -44,10 +44,27 @@
       content: 'Hello';
     }
 
+    li {
+      position: relative;
+      font-size:16px;
+    }
+    
+    li::before {
+      content: "";
+      position:absolute;
+      left:-20px;
+      background-color:red;
+      z-index:-1;
+      display:inline-block;
+      width:16px;
+      height:16px;
+      border-radius:50%;
+    }
+
     .box-shadow {
       height: 100px;
       width: 100px;
-      background-color: aqua;
+      background-color: green;
       margin: auto;
       /* box-shadow: 10px 10px 2px 2px lightblue inset, 12px 12px 2px 2px red inset, 14px 14px 2px 2px green inset;
       box-shadow: 10px 10px 2px 2px lightblue, 12px 12px 2px 2px red, 14px 14px 2px 2px green;
@@ -56,7 +73,13 @@
       transition: background-color 4s ease 2s, width 2s linear 3s;
       transition-property: all;
       transition-duration: 3s;
-      /* transition-delay: 2s; */
+      transition-delay: 5s;
+      /* background-image: repeating-linear-gradient(45deg, red, pink 20%, white 20%); */
+      background-image: repeating-radial-gradient(red, yellow 10%, green 15%);
+      background-image: repeating-conic-gradient(red 10%, yellow 20%);
+
+      background: url('../../Screenshot\ 2022-06-16\ at\ 11.01.17\ PM.png'), linear-gradient(45deg, red, pink, white);
+      /* background: url('../../Screenshot\ 2022-06-16\ at\ 11.01.17\ PM.png'); */
       /* transition-timing-function: cubic-bezier(0, 1.87, .95, -0.12); */
     }
 
@@ -88,7 +111,16 @@
 
   <button id="cart-btn">Cart</button> -->
 
-  <div class="box-shadow">Shadow</div>
+  <div class="box-shadow">Shadow<button type="button"></button></div>
+  <!--   
+                                                                          <ol>
+                                                                            <li>One</li>
+                                                                          </ol>
+                                                                          
+                                                                          <input type="text" /> -->
+  
+  
+  <section></section>
 </body>
 
 </html>
