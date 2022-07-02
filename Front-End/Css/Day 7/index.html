@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .flex-container {
+      background-color: aqua;
+      padding: 5px;
+      height: 800px;
+
+      display: flex;
+      /* flex-direction: column-reverse;
+      flex-wrap: wrap-reverse; */
+
+      flex-flow: row wrap;
+
+      justify-content: flex-start;
+
+      /* work on cross axis */
+      align-items: flex-start;
+      /*Check along with align-content stretch*/
+      /* align-content: flex-start; */
+    }
+
+    .flex-items {
+      height: 100px;
+      width: 100px;
+      border: 2px solid;
+      background-color: red;
+      margin: 5px;
+      text-align: center;
+      flex-basis: content;
+      flex-grow: 2;
+      flex-shrink: 1;
+      flex: 3 2;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item-2 {
+      flex-shrink: 2;
+      flex-basis: 40px;
+      order: 2;
+      align-self: center;
+    }
+
+    .item-4 {
+      order: 6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flex-container">
+    <div class="flex-items">Item 1</div>
+    <div class="flex-items item-2"><span id="text">Item 2</span></div>
+    <div class="flex-items item-3">Item 3</div>
+    <div class="flex-items item-4">Item 4</div>
+    <!-- <div class="flex-items">Item 5</div>
+    <div class="flex-items">Item 6</div>
+    <div class="flex-items">Item 7</div>
+    <div class="flex-items">Item 8</div>
+    <div class="flex-items">Item 9</div>
+    <div class="flex-items">Item 10</div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div>
+    <div class="flex-items">Item </div> -->
+  </div>
+</body>
+
+</html>
