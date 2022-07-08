@@ -18,6 +18,7 @@ loginBtnEle.addEventListener('click', function () {
   console.log("Login Click")
 })
 
+loginBtnEle.addEventListener('click', btnClickHandler)
 const btnElements = document.getElementsByClassName('btn')
 console.log(btnElements)
 
