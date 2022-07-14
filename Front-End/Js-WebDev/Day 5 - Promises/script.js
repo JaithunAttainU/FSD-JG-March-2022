@@ -36,3 +36,35 @@ const rejectedFunc = (error) => {
   console.log("Error Occured", error)
   jokeDisplayEle.innerText = 'Error Occured'
 }
+
+
+//async - await
+let result;
+btnEle.addEventListener('click', async (event) => {
+
+  try {
+    const response = await fetch('https://v2.jokeapi.dev/joke/Any') //only works with async
+    result = await response.json()
+
+    if (result.error) {
+      jokeDisplayEle.innerText = 'Error Occured'
+      return
+    }
+
+    if (result.type === 'single') {
+      jokeDisplayEle.innerText = result.joke
+      return
+    }
+    if (result.type === 'twopart') {
+      jokeDisplayEle.innerText = `${result.setup} - ${result.delivery}`
+    }
+  } catch (err) { //hanlde errors
+    console.log(err)
+    jokeDisplayEle.innerText = 'Error Occured'
+  }
+})
+
+
+async function add() {
+
+}
