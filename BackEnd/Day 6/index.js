@@ -1,5 +1,10 @@
 const express = require('express') //commonJS Modules //import express from 'express' -Es6
 const mockData = require('./mock/posts.js') //object
+
+//importing middlewares
+const errHandler = require('./middlewares/errMiddleware.js')
+const auth = require('./middlewares/auth.js')
+
 var morgan = require('morgan')
 const app = express()
 
@@ -21,7 +26,6 @@ app.use(auth)
 //   response.sendFile(`${__dirname}/files/index.html`)
 // })
 
-
 //GET Operations
 app.get('/posts', (req, res) => {
 
@@ -40,6 +44,7 @@ app.get('/posts', (req, res) => {
       return post.title === title ? true : false
     })
   }
+
   res.json(filteredPosts) //from DB
 })
 
@@ -59,16 +64,22 @@ app.get('/posts/:postID', (req, res) => { //route ;level
 })
 
 //add posts
-app.post('/posts', (req, res) => {
+app.post('/posts', (req, res, next) => {
   //authenticate
   //logging
   //validate
   //add the data 
   const postData = req.body
 
-  console.log(postData, "New Posts")
-  mockData.posts.push(postData)
-  res.status(201).send(postData)
+  //validate
+  if (!postData.title) {
+    next({ status: 400, msg: 'Title is not present', location: 'req.body.title' })
+  } else {
+    console.log(postData, "New Posts")
+    mockData.posts.push(postData)
+    res.status(201).send(postData)
+  }
+
 })
 
 app.delete('/posts/:postID', (req, res) => {
@@ -82,28 +93,35 @@ app.delete('/posts/:postID', (req, res) => {
   res.status(200).json({ status: 'Deleted Successfully' })
 })
 
-app.put('/posts/:postID', (req, res) => {
+app.put('/posts/:postID', (req, res, next) => {
   const pathParams = req.params
   const { postID } = pathParams
 
   const newPostData = req.body
   const { title, body, userId } = newPostData
 
-  mockData.posts = mockData.posts.map(post => {
-    if (post.id === Number(postID)) {
+  if (userId) {
+    next({ status: 400, msg: 'UserID cannot be edited', location: 'req.body.userId' })
+  } else {
+    mockData.posts = mockData.posts.map(post => {
+      if (post.id === Number(postID)) {
 
-      if (title) {
-        post.title = title
+        if (title) {
+          post.title = title
+        }
+        if (body) {
+          post.body = body
+        }
       }
-      if (body) {
-        post.body = body
-      }
-    }
-    return post
-  })
+      return post
+    })
 
-  res.status(200).send(newPostData)
+    res.status(200).send(newPostData)
+  }
+
 })
+
+app.use(errHandler)
 
 function logger(req, res, next) {
   console.log("Date &  Time:", new Date())
@@ -111,23 +129,6 @@ function logger(req, res, next) {
   next()
 }
 
-function auth(req, res, next) {
-  let isValid = true; //hard coding values
-
-  // if (req.userName == userName && req.password === password) {
-  //   isValid = true
-  // } els e{
-  //   isValid = false
-  // }
-
-  console.log("Auth Middleware")
-  if (isValid) {
-    next()
-  } else {
-    res.status(401).send({ status: 'Not Authenticated' })
-  }
-
-}
 
 app.listen(8000, () => {
   console.log("Server Started Successfully at Port 8000")
