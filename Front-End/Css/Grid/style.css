@@ -1,0 +1,19 @@
+.main {
+  height: 80%;
+  background-color: teal;
+}
+
+.head-main {
+  height: 90%;
+}
+
+.products {
+  background-color: yellow;
+}
+
+.images {
+  background-color: lightblue;
+}
+body {
+  height: 100vh;
+}
