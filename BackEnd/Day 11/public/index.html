@@ -6,16 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Movie</title>
+  <script src="./script.js" defer></script>
 </head>
 
 <body>
-  <form method="post" action="/movies">
-    <input type="number" name="id" placeholder="Enter ID of the User" />
-    <input type="text" name="name" placeholder="Enter Name of the Movie" />
-    <input type="text" name="language" placeholder="Enter Language of the movie" />
-
-    <input type="submit" />
-  </form>
+    <input type="number" name="id" id="id" placeholder="Enter ID of the User" />
+    <input type="text" name="name" id="name" placeholder="Enter Name of the Movie" />
+    <input type="text" name="language" id="language" placeholder="Enter Language of the movie" />
+    <input type="file" name="movieImage" id="image" />
+    <input type="submit" id="submitBtn" />
+    <img width=500 height=500
+      src='https://res.cloudinary.com/dmssotckz/image/upload/v1659545999/pf1icbkdwjz0gosautil.jpg' />
 </body>
 
 </html>

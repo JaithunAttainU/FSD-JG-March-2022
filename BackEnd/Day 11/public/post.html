@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    const locationurl = window.location.href.toString()//'http://localhost:8000/posts/1'
+    const postId = locationurl.charAt(locationurl.length - 1)
+    console.log(postId)
+
+    async function gteData() {
+      const response = await fetch(`/api/posts/${postId}`)
+      const data = await response.json()
+      console.log(data)
+    }
+    gteData()
+  </script>
+</body>
+
+
+</html>
