@@ -1,0 +1,46 @@
+//To list all available dbs
+show dbs;
+
+//To switch to a database. If database is not present, it will create one and then switch
+use dbName;
+
+//To list all colllections in a db
+show collections;
+
+//To add one document in a collection
+db.collectionName.insertOne({})
+
+//To add many documents in a collection
+db.collectionName.insertMany([{}, {}, {}])
+
+//To Query all document in a collection
+db.collectionName.find()
+
+//To Query based on few conditions
+db.cars.find({company: 'BMW', edition: 'sportsline'})
+
+//To Query based on _id
+db.cars.find({_id: ObjectId("62ed41acf039cb23ad68525f")})
+db.cars.find(ObjectId("62ed41acf039cb23ad68525f"))
+
+//To find only the first document that matches the condition
+db.cars.findOne({company: 'BMW'})
+
+//To project only the fields required instead of entire document
+db.cars.find({company: 'BMW'}, {name: 1, company: 1, _id: 0})
+
+//To update one document that matches the condition with values given inside $set operator
+db.cars.updateOne({company: 'BMW'}, {$set: {number: 'TH345356', colour: 'red', engineType: 'V8'}})
+
+//To update many documents that matches the condition with values given inside $set operator
+db.cars.updateMany({company: 'BMW'}, {$set: {number: 'TH345357', colour: 'purple', engineType: 'V9'}})
+
+//Using operators to specify the condition
+db.users.find({age: {$gt: 24}})
+db.users.find({age: {$gte: 24}})
+
+//To delete a document that matches the condition
+db.users.deleteOne({name: 'xyz'})
+
+//To delete all documents that matches the condition
+db.users.deleteMany({name: 'xyz'})
