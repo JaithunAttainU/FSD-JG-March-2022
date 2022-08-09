@@ -1,88 +1,74 @@
-const { getCollection } = require('../dbConfig')
+const { initDB } = require('../dbConfig')
+const { ObjectId } = require('mongodb')
+let movieCollection;
 
-const collection = getCollection()
+//IIFE
+(async function () {
+  movieCollection = await initDB('Movies')
+})();
+
+
+// async function getMovieCollection() {
+//   movieCollection = await initDB()
+// }
+// getMovieCollection()
+
+
 const getMovies = async (req, res) => {
 
   const { language, name } = req.query //english
 
-  const movies = await collection.find().toArray()
+  const movies = await movieCollection.find().toArray()
   console.log(movies)
-  // let filteredMovies = movies
-
-  // if (language) {
-  //   filteredMovies = filteredMovies.filter(movie => {
-  //     if (movie.language === language) {
-  //       return true
-  //     } else {
-  //       return false
-  //     }
-  //     // return movie.language === language
-  //   })
-  // }
-
-  // if (name) {
-  //   filteredMovies = filteredMovies.filter(movie => {
-  //     return movie.name === name
-  //   })
-  // }
-
-  // res.send(filteredMovies)
-  res.send({ status: 'success' })
+  res.send({ status: 'success', movies: movies })
 }
 
-const getMoviesByID = (req, res) => {
+const getMoviesByID = async (req, res) => {
   const { movieID } = req.params
 
-  // const movie = movies.find((movie) => {
-  //   return movie.id === movieID
-  // })
-
-  // if (movie) {
-  //   res.send(movie)
-  // } else {
-  //   res.status(404).send({ msg: 'No Movie found' })
-  // }
-
-  res.send({ status: 'success' })
+  const movie = await movieCollection.findOne({ _id: new ObjectId(movieID) })
+  res.send({ status: 'success', movie: movie })
 }
 
-const postMovie = (req, res) => {
+const postMovie = async (req, res) => {
   const movieData = req.body
-  // movies.push(movieData)
-  res.status(201).send({ status: 'success' })
+
+  //validation
+  try {
+    const response = await movieCollection.insertOne(movieData)
+    console.log(response)
+    if (response.acknowledged) {
+      res.status(201).send({ status: 'success' })
+    } else {
+      res.status(500).send({ status: 'error', msg: 'Cannot Post' })
+    }
+  } catch (err) {
+    res.status(500).send({ status: 'error', msg: 'Cannot Post' })
+  }
+
 }
 
-const updateMovieById = (req, res) => {
+const updateMovieById = async (req, res) => {
 
   const { movieID } = req.params
   const updatedMovieData = req.body //{language, name, id}
+  try {
+    await movieCollection.updateOne({ _id: new ObjectId(movieID) }, { $set: updatedMovieData })
+    res.send({ status: 'Updated Successfully' })
+  } catch (err) {
+    res.status(500).send({ status: 'error', msg: 'Cannot Update Movie' })
+  }
 
-  // movies = movies.map(movie => {
-  //   if (movie.id === movieID) {
-  //     const { name, language } = updatedMovieData
-
-  //     if (name) {
-  //       movie.name = name
-  //     }
-
-  //     if (language) {
-  //       movie.language = language
-  //     }
-  //   }
-  //   return movie
-  // })
-
-  res.send({ status: 'Updated Successfully' })
 }
 
-const deleteMovieByID = (req, res) => {
+const deleteMovieByID = async (req, res) => {
   const { movieID } = req.params
-
-  // movies = movies.filter(movie => {
-  //   return movie.id !== movieID
-  // })
-
-  res.send({ status: 'Deleted Successfully' })
+  try {
+    await movieCollection.deleteOne({ _id: new ObjectId(movieID) })
+    res.send({ status: 'Deleted Successfully' })
+  } catch (err) {
+    res.status(500).send({ status: 'Cannot delete movie due to internal error' })
+  }
 }
 
 module.exports = {

@@ -1,6 +1,5 @@
 const express = require('express')
-const { initDB } = require('./dbConfig')
-initDB()
+
 
 const movieRouter = require('./routes/movies.js')
 const usersRouter = require('./routes/users.js')
