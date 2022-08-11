@@ -1,11 +1,11 @@
 const express = require('express') //commonJS Modules //import express from 'express' -Es6
 const multer = require('multer') //import lib
-const Base64 = require('js-base64')
+const Base64 = require('js-base64') //convert buffer to base64 string
 
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
-  cloud_name: '',
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: '',
   api_secret: ''
 })
@@ -21,9 +21,10 @@ app.use(express.static('public')) //{index:false}
 const upload = multer({
   storage: multer.memoryStorage()
 })
-app.post('/products', upload.single('image'), function (req, res, next) {
+
+app.post('/products', /*upload.fields({ name: 'image', maxCount: 1 }, { name: 'image2', maxCount: 1 })*/ upload.array('image', 3), function (req, res, next) {
   const productData = req.body
-  const fileData = req.file
+  const fileData = req.file //req.files for multiple file uploads
 
   if (fileData) {
     productData.image = fileData.filename

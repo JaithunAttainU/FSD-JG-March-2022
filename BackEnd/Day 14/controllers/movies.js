@@ -40,10 +40,11 @@ const postMovie = async (req, res) => {
     if (response.acknowledged) {
       res.status(201).send({ status: 'success' })
     } else {
-      res.status(500).send({ status: 'error', msg: 'Cannot Post' })
+      res.status(500).send({ status: 'error', msg: 'Internal Error' })
     }
   } catch (err) {
-    res.status(500).send({ status: 'error', msg: 'Cannot Post' })
+    //log in a file for debug err
+    res.status(500).send({ status: 'error', msg: 'Internal Error' })
   }
 
 }
