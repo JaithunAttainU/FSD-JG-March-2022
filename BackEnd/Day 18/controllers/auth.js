@@ -25,10 +25,9 @@ const loginController = async (req, res) => {
 
     const userPayload = { email }
 
-    //token creation 
-    const accessToken = jwt.sign(userPayload, process.env.AUTH_SECRET_KEY, { algorithm: 'HS384', expiresIn: '1d' })
-
-    res.cookie('jwt', accessToken, { maxAge: 900000 })
+    //token creation payload, secret key, optional - algo, expirationTime
+    const token = jwt.sign(userPayload, process.env.AUTH_SECRET_KEY, { algorithm: 'HS384', expiresIn: '1d' })
+    res.cookie('jwt', token, { maxAge: 900000 })
     res.send({ status: 'success' })
 
   } catch (err) {
@@ -37,7 +36,8 @@ const loginController = async (req, res) => {
 }
 
 const logoutController = (req, res) => {
-
+  res.cookie('jwt', '', { maxAge: 3000 })
+  res.send({ status: 'success', msg: 'Logged out successfully' })
 }
 
 module.exports = {
