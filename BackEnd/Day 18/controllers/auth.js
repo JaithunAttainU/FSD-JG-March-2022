@@ -16,14 +16,14 @@ const loginController = async (req, res) => {
   const { email, password } = req.body
 
   try {
-    const user = await UserModel.findOne({ email, password })
+    const user = await UserModel.findOne({ email, password }) //{isAdmin}
 
     if (!user) {
       res.status(401).send({ status: 'error', msg: 'User Not Found' })
     }
     //user is verfied
 
-    const userPayload = { email }
+    const userPayload = { email, roles: user.roles }
 
     //token creation payload, secret key, optional - algo, expirationTime
     const token = jwt.sign(userPayload, process.env.AUTH_SECRET_KEY, { algorithm: 'HS384', expiresIn: '1d' })

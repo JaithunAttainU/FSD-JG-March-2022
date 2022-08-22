@@ -9,5 +9,12 @@ authRouter.post('/signup', signUpController)
 authRouter.post('/login', loginController)
 authRouter.post('/logout', logoutController)
 
+authRouter.get('/products', (req, res) => {
+  if (req.userData.isAdmin) {
+    res.sendFile()
+  } else {
+    res.send({})
+  }
 
+})
 module.exports = authRouter

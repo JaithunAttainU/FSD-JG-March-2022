@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
     try {
       const userData = jwt.verify(token, process.env.AUTH_SECRET_KEY)
       console.log(userData)
-
+      req.userData = userData//email, roles
       next()
     } catch (err) {
       console.log(err)

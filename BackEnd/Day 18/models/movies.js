@@ -21,7 +21,8 @@ const moviesSchema = new mongoose.Schema({
   },
   language: String,
   cast: [String],
-  is3D: Boolean
+  is3D: Boolean,
+  reviews: [String]
 })
 
 //collectionName, Schema

@@ -14,7 +14,7 @@ const getMovies = async (req, res) => {
 const getMoviesByID = async (req, res) => {
   const { movieID } = req.params
 
-  const movie = await MovieModel.findById(movieID)
+  const movie = await MovieModel.findById(movieID, { name: 1, releaseDate: 1 }).populate('reviews', { comment: 1 })
   if (movie) {
     res.send(movie)
   } else {

@@ -21,10 +21,14 @@ const moviesSchema = new mongoose.Schema({
   },
   language: String,
   cast: [String],
-  is3D: Boolean
+  is3D: Boolean,
+  reviews: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'reviews'
+  }]
 })
 
 //collectionName, Schema
-const MovieModel = mongoose.model('Movies', moviesSchema)
+const MovieModel = mongoose.model('movies', moviesSchema)
 
 module.exports = MovieModel
