@@ -2,49 +2,65 @@ const MovieModel = require('../models/movies')
 
 const getMovies = async (req, res) => {
 
-  const { language, title, rating, size } = req.query
+  const { page = 1, size = 10 } = req.query
   try {
-    // const movies = await MovieModel.find({});
 
-    const movies = await MovieModel.aggregate([{
-      $match: {
-        year: 2015,
-        "imdb.rating": {
-          $gt: 8.0
-        }
-      }
-    }, //20
-    {
-      $lookup: {
-        from: 'comments', //collection name
-        localField: "_id",
-        foreignField: "movie_id",
-        as: "comments"
-      }
-    },
-    {
-      $project: {
-        title: 1,
-        cast: true,
-        year: 1,
-        "imdb.votes": 1,
-        "imdb.rating": 1,
-        "comments.text": 1
-      }
-    },
-    {
-      $limit: 5
-    },
-    {
-      $sort: {
-        title: -1
-      }
-    },
-    {
-      $unwind: "$cast" //destructing an array
-    }
-    ])
-    res.send({ status: 'success', movies })
+    const movieCount = await MovieModel.find().count()
+    const movies = await MovieModel.find({ year: 2015 }, { title: 1 }).skip(size * (page - 1)).limit(size)
+
+    //{year: 2015, count: 1}, {year: 2010, count: 4}, {}
+
+    // const movies = await MovieModel.aggregate([{
+    //   $group: {
+    //     _id: "$year",
+    //     count: {
+    //       $sum: 2
+    //     }
+    //   }
+    // }, {
+    //     $match: {
+    //       count: 8
+    //   }
+    //   }])
+    // const movies = await MovieModel.aggregate([{
+    //   $match: {
+    //     year: 2015,
+    //     "imdb.rating": {
+    //       $gt: 8.0
+    //     }
+    //   }
+    // }, //20
+    // {
+    //   $lookup: {
+    //     from: 'comments', //collection name
+    //     localField: "_id",
+    //     foreignField: "movie_id",
+    //     as: "comments"
+    //   }
+    // },
+    // {
+    //   $project: {
+    //     title: 1,
+    //     cast: true,
+    //     year: 1,
+    //     "imdb.votes": 1,
+    //     "imdb.rating": 1,
+    //     "comments.text": 1
+    //   }
+    // },
+    // {
+    //   $limit: 5
+    // },
+    // {
+    //   $sort: {
+    //     title: -1
+    //   }
+    // },
+    // {
+    //   $unwind: "$cast" //destructing an array
+    // }
+    // ])
+    res.send({ status: 'success', movies, count: movieCount })
   } catch (err) {
     console.log(err)
     res.status(500).send({ status: 'error', msg: 'error fetching movies' })

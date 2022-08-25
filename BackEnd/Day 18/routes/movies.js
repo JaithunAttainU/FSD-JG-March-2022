@@ -4,8 +4,15 @@ const { authMiddleware } = require('../middlewares/auth');
 const authRouter = require('./auth');
 const movieRouter = express.Router()
 
-movieRouter.use(authMiddleware)
+const path = require('path')
 
+// movieRouter.use(authMiddleware)
+
+movieRouter.get('/showMovies', (req, res) => {
+  const indexPath = path.join(__dirname, '../')
+  console.log(__dirname, __filename)
+  res.sendFile(`${indexPath}public/index.html`)
+})
 movieRouter.get('/', getMovies);
 movieRouter.get('/:movieID', getMoviesByID);
 movieRouter.post('/', postMovie);
