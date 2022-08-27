@@ -12,3 +12,16 @@ async function initDB() {
 module.exports = {
   initDB
 }
+
+
+var name = 'dfsefg'
+name = 5
+
+name = [resgeg, erfegs]
+
+
+int num = 5
+num = 'sdfsg'
+
+String name = 'dferd'
+name = 5
