@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Thumbnail() {
+function Thumbnail(props) {
+
+  const { imageUrl } = props
   return (
-    <div>Thumbnail</div>
+    <img src={props.imageUrl} />
   )
 }
 
