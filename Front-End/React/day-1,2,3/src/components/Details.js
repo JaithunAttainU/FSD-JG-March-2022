@@ -16,7 +16,7 @@ class Details extends React.Component {
     const { title, uploadTime, uploaderAvatar, uploaderName, views } = this.props.videoDetail
     return (
       <div className='row'>
-        <div className='col-2'>
+        <div className='col-2 mt-1'>
           <img className="img-fluid rounded-circle" src={uploaderAvatar} />
         </div>
         <div className='col-10'>

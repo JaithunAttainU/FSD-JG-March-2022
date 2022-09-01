@@ -9,7 +9,7 @@ function YoutubeCard(props) {
   // props = { name: 'dsfdsg' } //not possible
   return (
     // React.Fragment
-    <div className='card w-30'>
+    <div className='card w-25 m-3'>
       <Thumbnail imageUrl={props.videoDetail.imageUrl} />
       <Details videoDetail={props.videoDetail} />
     </div>

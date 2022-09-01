@@ -7,7 +7,7 @@ import videoData from '../mock/videoData'
 function App() {
 
   return (
-    <div className='container d-flex flex-wrap'>
+    <div className='container d-flex'>
       {videoData.map(data => {
         return <YoutubeCard videoDetail={data} />
       })}
