@@ -1,12 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 import CartCounter from './components/CartCounter';
 import CartCounterFunc from './components/CartCounterFunc';
+import { image } from './mock/image'
 
 function App() {
   return (
     // <CartCounter />
-    <CartCounterFunc />
+    <div className='d-flex flex-wrap'>
+      {image.map((image, index) => {
+        return (
+          <CartCounterFunc key={index} imageUrl={image} />
+        )
+      })}
+    </div>
   );
 }
 
