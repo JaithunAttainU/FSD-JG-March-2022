@@ -13,6 +13,7 @@ export class Dummy extends Component {
 
   componentDidMount() {
     console.log("componentDidMount is called")
+
   }
 
   componentDidUpdate() {
