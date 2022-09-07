@@ -32,6 +32,7 @@ export default class UsersList extends Component {
   componentWillUnmount() {
     console.log("Unmounted")
   }
+
   componentDidMount() {
     this.fetchUser()
   }
@@ -56,6 +57,7 @@ export default class UsersList extends Component {
             </div>
           )
         })}
+
         {detailedCard}
         {/* {this.state.selectedUserInfo ? <UsersDetailedInfo userInfo={this.state.selectedUserInfo} /> : null} */}
 
