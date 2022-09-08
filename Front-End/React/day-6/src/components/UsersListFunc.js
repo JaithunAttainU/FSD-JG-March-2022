@@ -5,7 +5,6 @@ import '../styles/UsersList.css'
 
 function UsersListFunc() {
 
-
   const [users, setUsers] = useState([]) //[[], func()]
   const [selectedUser, setSelectedUser] = useState(null)
   const [selectedUserInfo, setSelectedUserInfo] = useState(null)
@@ -17,6 +16,7 @@ function UsersListFunc() {
   }
 
   const fetchUserByID = async () => {
+
     const userRes = await fetch(`https://jsonplaceholder.typicode.com/users/${selectedUser}`)
     const userData = await userRes.json()
     setSelectedUserInfo(userData)
