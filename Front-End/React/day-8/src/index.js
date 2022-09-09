@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Invoices from './components/Invoices';
 import Expenses from './components/Expenses';
-
+import InvoiceDetails from './components/InvoiceDetails';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />}>
-        <Route path='invoices' element={<Invoices />} />
+        <Route path='invoices' element={<Invoices />}>
+          <Route path=':invoiceID' element={<InvoiceDetails />} />
+        </Route>
         <Route path='expenses' element={<Expenses />} />
+        {/* <Route path='invoices/:invoiceID' element={<Invoices><InvoiceDetails /></Invoices>} /> */}
       </Route>
       <Route path='*' element={<NotValidPage />} />
     </Routes>
@@ -27,6 +30,13 @@ root.render(
 //     <Invoices />
 //   </App>
 
+//   '/invoices/1997' -
+//   <App>
+//     <Invoices>
+//        <InvoiceDetails />
+//     </Invoices >
+//   </App>
+
 // '/expenses' -
 //   <App>
 //     <Expenses />
@@ -37,6 +47,7 @@ function NotValidPage() {
     <div>NotValidPage</div>
   )
 }
+
 
 export default NotValidPage
 // If you want to start measuring performance in your app, pass a function
