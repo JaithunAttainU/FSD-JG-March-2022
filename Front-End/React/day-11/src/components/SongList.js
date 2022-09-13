@@ -34,6 +34,5 @@ function SongList() {
   )
 }
 
-2
 
 export default SongList
