@@ -1,11 +1,14 @@
 import './App.css';
 import React from 'react'
-import Login from './components/Login';
+import Counter from './components/counter';
+import Dummy from './components/Dummy';
+
 function App() {
   return (
     <>
       <div className='container'>
-        <Login />
+        <Counter />
+        <Dummy />
       </div>
     </>
   )
