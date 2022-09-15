@@ -6,6 +6,7 @@ function Login() {
   const [email, setEmail] = useLocalStorage('email', '')
   const [password, setPassword] = useLocalStorage('pass', '')
 
+
   return (
     <div>
       <input value={email} type="text" placeholder='Enter Email...' onChange={(event) => {
