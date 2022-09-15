@@ -20,7 +20,7 @@ function SongList() {
       {
         songsList.map(song => {
           return (
-            <div className='card'>
+            <div className='card' key={song.title}>
               <div>Name: {song.title}</div>
               <div>Duration: {song.duration}</div>
               <button onClick={() => {
