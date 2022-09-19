@@ -66,6 +66,8 @@ function UsersListFunc() {
           </div>
         )
       })}
+
+      {!users ? <>Loading...</> : null}
       {selectedUserInfo ? <UsersDetailedInfo userInfo={selectedUserInfo} /> : null}
     </React.Fragment>
   )
